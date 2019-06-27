@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>城市区域-级联选择</title>
+    <link rel="stylesheet" href="./css/element-ui.css">
+    <link rel="stylesheet" href="./css/drCascader.css">
+</head>
+
+<body>
+    <div id="myApp">
+        <span class="select_name">城市区域:</span>
+        <!-- 使用 -->
+        <my-cascader :optiondatas="optiondatas" :ismulti='isMulti' :defaultvalue="defaultValue"
+            :defaultlevel="defaultLevel" @getcascadercal="getCascaderVal"></my-cascader>
+    </div>
+
+</body>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/vue.js"></script>
+<script src="./js/element-ui.js"></script>
+<script src="./js/drCascader.js"></script>
+<!-- 数据 -->
+<script src="./js/areaData.js"></script>
+<script>
+    new Vue({
+        el: '#myApp',
+        data() {
+            return {
+                /*
+                 **需要注意的是 isMulti、defaultValue、defaultLevel 一定要保持一致，否则报错
+                 */
+                optiondatas: optiondatas, //数据
+                // ==多选==
+                isMulti:true,  //false单选，true多选 (注：默认值有默认值是必传)
+                defaultValue:[["zhinan", "shejiyuanze", "shejiyuanze"],["zhinan", "shejiyuanze", "fankui"]],//默认值, 格式： 单选["zhinan"] 多选[["zhinan"]],值一样展不开
+                defaultLevel:2,//等级索引值,0城市、1区域、2板块
+                // ==单选==
+                // isMulti: false, //false单选，true多选 (注：默认值有默认值是必传)
+                // defaultValue: ["zhinan", "shejiyuanze", "shejiyuanze"], //默认值, 格式： 单选["zhinan"] 多选[["zhinan"]]
+                // defaultLevel: 2 //等级索引值,0城市、1区域、2板块
+            }
+        },
+        created() {},
+        mounted: function () {
+
+        },
+        // 局部注册
+        // components: {
+        //     'myCascader' : cascaderComponet,
+        // },
+        methods: {
+            getCascaderVal(val, obj) {
+                console.log('结果:', val, obj)
+            }
+        }
+    });
+</script>
+
+</html>
